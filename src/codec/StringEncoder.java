@@ -18,7 +18,8 @@ public class StringEncoder extends ProtocolEncoderAdapter {
         IoBuffer ioBuffer = IoBuffer.allocate(data.length);
         ioBuffer.put(data,0,data.length);
         ioBuffer.flip();
-        //这里貌似用ioSession.write也没有问题
+        //这里不能用ioSession.write,若使用ioSession.write消息会在这循环
         out.write(ioBuffer);
+//        ioSession.write(data);
     }
 }
